@@ -1,0 +1,280 @@
+:root{
+  --main-color: #6e273d;
+  --secondary-color: #8f2e4d;
+  --linne-color: white;
+  --background-color: white;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+  padding: 0;
+  max-width: 100%;
+  margin: 0;
+}
+
+.container {
+  padding-right: 30px;
+  padding-left: 30px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+  /* Small*/
+  @media (max-width: 576px) {
+    .container {
+      width: 100%;
+    }
+  }
+  /* Medium */
+  @media (min-width: 768px) {
+    .container {
+      width: 748px;
+    }
+  }
+  /* Large */
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+  }
+  /* Extra Large */
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  }
+/* Start header */
+.header {
+  background-color: var(--main-color);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.header .logo {
+  color: var(--linne-color);
+  font-size: 28px;
+  font-weight: bold;
+  height: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header .main-navbar {
+  display: flex;
+}
+
+.header .main-navbar > li > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 72px;
+  position: relative;
+  color: var(--linne-color);
+  padding: 0 20px;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+.header .main-navbar > li > a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  background-color: var(--background-color);
+  bottom: 0;
+  left: -100%;
+}
+
+.header .main-navbar > li > a:hover::before {
+  left: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* End header */
+
+/* Start login form */
+#login-form {
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 13%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  margin-bottom: 100px;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.login-title {
+  color: var(--main-color);
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  background-color: var(--main-color);
+  color: var(--linne-color);
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+#error-msg {
+  text-align: center;
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+#back-btn, #logout-btn {
+  background-color: var(--main-color);
+}
+#back-btn:hover, #logout-btn:hover {
+  background-color: var(--secondary-color);
+}
+/*End login form */
+
+/* Start utbildningar */
+.utbildningar {
+  padding-top: 100px;
+  padding-bottom: 200px;
+  position: relative;
+  background-color: var(--background-color);
+  
+}
+
+.title{
+  margin: 0 auto 80px;
+  border: 1px solid var(--main-color);
+  padding: 10px 20px;
+  font-size: 28px;
+  width: fit-content;
+}
+
+.utbildningar .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.utbildningar .box {
+  padding: 3px;
+  height: 500px;
+  position: relative;
+  display: inline-block;
+  background-color: var(--background-color);
+  box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 13%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+}
+
+.utbildningar .box img {
+  width: 100%;
+  height: 500px;
+}
+
+.utbildningar .container .text-overlay {
+  position: absolute;
+  bottom: 40%;
+  left: 50%;
+  transform: translateX(-50%); 
+  background-color: var(--main-color);
+  color: var(--linne-color);
+  width: 300px;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 30px;
+  text-align: center;
+  }
+/* End utbildningar */
+
+/* Start footer */
+.footer {
+  background-color: var(--main-color);
+  padding: 50px 0 0;
+  
+}
+
+.footer .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+  gap: 50px;
+}
+
+.footer .box .line .info {
+  line-height: 1.5;
+
+}
+.footer .box h3 {
+  color: var(--linne-color);
+  font-size: 40px;
+}
+
+.footer .box h4{
+  color: var(--linne-color);
+  font-size: 20px;
+}
+
+.footer .box .links li {
+  padding: 15px 0;
+}
+
+.footer .box .links li:not(:last-child) {
+  border-bottom: 1px solid #c5c5c5;
+}
+
+.footer .box .links li:hover a {
+  color: #c5c5c5;
+}
+
+.footer .box .links li a {
+  color: var(--linne-color);
+}
+
+.footer .box .line {
+  color: var(--linne-color);
+  display: flex;
+  align-items: center;
+}
+
+.footer .copyright {
+  margin: 50px 0 0;
+  padding: 30px 0;
+  text-align: center;
+  color: var(--linne-color);
+  font-size: 22px;
+  border-top: solid 1px;
+
+}
+/* End footer */

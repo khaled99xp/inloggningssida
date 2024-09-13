@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>inloggningssida</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Start header -->
+  <div class="header">
+    <div class="container">
+      <a href="#" class="logo">Arboga Högskolan</a>
+      <ul class="main-navbar">
+        <li><a href="#">Här finns vi</a></li>
+        <li><a href="#">Biblioteket</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Logga in i Canvas </a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- End header -->
+   
+  <!-- Start login form -->
+  <div id="login-form">
+    <h2 class="login-title">Login</h2>
+    <div class="login-container">
+      <input type="text" id="username" placeholder="Namn">
+      <input type="password" id="password" placeholder="Lösenord">
+      <button id="login-btn">Logga in</button>
+      <p id="error-msg"></p>
+    </div>
+  </div>
+  <!-- End login form -->
+
+  <!-- Start Utbildningar -->
+  <div class="utbildningar" id="utbildningar">
+    <h2 class="title">Utbildningar</h2>
+    <div class="container">
+      <div class="box">
+        <div class="image">
+          <img src="images/University.jpg" alt="University" />
+          <div class="text-overlay">
+            Program & kurser
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="image">
+          <img src="images/YH-utbildning.jpg" alt="YH-utbildning" />
+          <div class="text-overlay">
+            YH-utbildning
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="image">
+          <img src="images/Forskning.jpg" alt="Forskning" />
+          <div class="text-overlay">
+            Forskning
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End utbildningar -->
+
+  <!-- Start footer -->
+  <div class="footer">
+    <div class="container">
+      <div class="box">
+        <h3>Arboga Högskolan</h3>
+      </div>
+      <div class="box">
+        <h4>Om webbplatsen</h4>
+        <ul class="links">
+          <li><a href="#">Kakor (Cookies)</a></li>
+          <li><a href="#">Dataskyddsförordningen (GDPR)</a></li>
+          <li><a href="#">Jobba hos oss</a></li>
+          <li><a href="#">Tillgänglighetsredogörelse</a></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h4>Kontakt</h4>
+        <div class="line">
+          <p class="info">Arboga kommun
+            Box 45
+            732 21 Arboga
+            Besöksadress: Smedjegatan 5</p>
+        </div>
+        <div class="line">
+          <p class="info">+46589-870 00</p>
+        </div>
+        <div class="line">
+          <p class="info">Organisationsnummer: 212000-2122</p>
+        </div>
+      </div>
+    </div>
+    <p class="copyright">Arboga Högskolan</p>
+  </div>
+  <!-- End footer -->
+
+  <!-- Start Script -->
+  <script>
+    // Hårdkodat användarnamn och lösenord.
+    const correctUsername = "test";
+    const correctPassword = "1234";
+
+    // Get referenser till DOM element.
+    const loginForm = document.getElementById('login-form');
+    const utbildningar = document.getElementById('utbildningar');
+    const errorMsg = document.getElementById('error-msg');
+    const canvasLink = document.querySelector('.main-navbar li:last-child a');
+
+    // Dölja login form innan user knappa på "Logga in i Canvas" knappen.
+    loginForm.style.display = 'none';
+
+    // Visa login form när user klickar på "Logga in i Canvas".
+    canvasLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      loginForm.style.display = 'block'; // Visa login form.
+      utbildningar.style.display = 'none'; // Dölja utbildningar section.
+    });
+
+    // Kontrollera om user redan är inloggad.
+    document.addEventListener('DOMContentLoaded', function () {
+      if (localStorage.getItem('loggedIn') === 'true') {
+        showWelcomeMessage();
+      }
+    });
+
+    // Hantera inloggn.
+    document.getElementById('login-btn').addEventListener('click', function () {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Kontrolera om de upggifter är stämmer överens med de hårdkodade valuses.
+      if (username === correctUsername && password === correctPassword) {
+        localStorage.setItem('loggedIn', 'true');
+        showWelcomeMessage();
+      } else {
+        // Display error message att upggifter är felaktiga.
+        errorMsg.textContent = "Felaktigt namn eller lösenord!";
+        errorMsg.style.color = "red";
+      }
+    });
+
+    // Function för att visa "Välkommen sida" samt döija login form och utbildningar section.
+    function showWelcomeMessage() {
+      // Välkommen sida som har skapat via "innerHTML".
+      loginForm.innerHTML = `
+        <h1>Välkommen till Canvas</h1>
+        <br>
+        <h2> Du är inloggad</h2>
+        <br>
+        <button id="logout-btn">Logga ut</button>`;
+      utbildningar.style.display = 'none';
+
+      // Hantera logout.
+      document.getElementById('logout-btn').addEventListener('click', function () {
+        localStorage.removeItem('loggedIn'); // Rensa login status.
+        showLoginForm(); // Visa login form igen.
+        loginForm.style.display = 'none'; //Döija login form igen då visas start sida igen.
+      });
+
+    }
+
+    // Function för att visa login form igen efter logout.
+    function showLoginForm() {
+      loginForm.innerHTML = `
+        <h2 .s>Login</h2>
+        <input type="text" id="username" placeholder="Namn">
+        <input type="password" id="password" placeholder="Lösenord">
+        <button id="login-btn">Logga in</button>
+        <p id="error-msg"></p>
+    `;
+      utbildningar.style.display = 'block';
+      errorMsg.textContent = '';
+
+      // Återanslut login form efter skapde händelse. "event handler".
+      document.getElementById('login-btn').addEventListener('click', function () {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username === correctUsername && password === correctPassword) {
+          localStorage.setItem('loggedIn', 'true');
+          showWelcomeMessage();
+        } else {
+          errorMsg.textContent = "Felaktigt namn eller lösenord!";
+          errorMsg.style.color = "red";
+        }
+      });
+    }
+  </script>
+  <!-- End Script -->
+</body>
+</html>
