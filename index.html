@@ -160,9 +160,12 @@
       document.getElementById('logout-btn').addEventListener('click', function () {
         localStorage.removeItem('loggedIn'); // Rensa login status.
         showLoginForm(); // Visa login form igen.
-        loginForm.style.display = 'none'; //Döija login form igen då visas start sida igen.
+        loginForm.style.display = 'block'; //Döija login form igen då visas start sida igen.
+        //Dölja inloggningsform efter 3 sekunder.
+          setTimeout(function() {
+          loginForm.style.display = 'none'; 
+        }, 3000);
       });
-
     }
 
     // Function för att visa login form igen efter logout.
