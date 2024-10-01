@@ -109,7 +109,7 @@ ul {
 /* End header */
 
 /* Start login form */
-#login-form {
+#login-form, #welcome-message {
   background-color: var(--background-color);
   padding: 20px;
   border-radius: 8px;
@@ -165,6 +165,7 @@ button:hover {
 #back-btn:hover, #logout-btn:hover {
   background-color: var(--secondary-color);
 }
+
 /*End login form */
 
 /* Start utbildningar */
