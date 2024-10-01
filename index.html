@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>inloggningssida</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <!-- Start header -->
   <div class="header">
@@ -15,14 +17,14 @@
         <li><a href="#">Här finns vi</a></li>
         <li><a href="#">Biblioteket</a></li>
         <li><a href="#">Press</a></li>
-        <li><a href="#">Logga in i Canvas </a></li>
+        <li><a href="#" id="canvas-link">Logga in i Canvas </a></li>
       </ul>
     </div>
   </div>
   <!-- End header -->
-   
+
   <!-- Start login form -->
-  <div id="login-form">
+  <div id="login-form" style="display: none;"> <!-- hidden by default -->
     <h2 class="login-title">Login</h2>
     <div class="login-container">
       <input type="text" id="username" placeholder="Namn">
@@ -32,6 +34,14 @@
     </div>
   </div>
   <!-- End login form -->
+
+  <!--Start Wekcone message-->
+  <div id="welcome-message" style="display: none;"> <!-- hidden by default -->
+    <h1>Välkommen till Canvas</h1>
+    <h2>Du är inloggad</h2>
+    <button id="logout-btn">Logga ut</button>
+  </div>
+  <!-- End welcome message -->
 
   <!-- Start Utbildningar -->
   <div class="utbildningar" id="utbildningar">
@@ -100,101 +110,9 @@
   </div>
   <!-- End footer -->
 
-  <!-- Start Script -->
-  <script>
-    // Hårdkodat användarnamn och lösenord.
-    const correctUsername = "test";
-    const correctPassword = "1234";
-
-    // Get referenser till DOM element.
-    const loginForm = document.getElementById('login-form');
-    const utbildningar = document.getElementById('utbildningar');
-    const errorMsg = document.getElementById('error-msg');
-    const canvasLink = document.querySelector('.main-navbar li:last-child a');
-
-    // Dölja login form innan user knappa på "Logga in i Canvas" knappen.
-    loginForm.style.display = 'none';
-
-    // Visa login form när user klickar på "Logga in i Canvas".
-    canvasLink.addEventListener('click', function (e) {
-      e.preventDefault();
-      loginForm.style.display = 'block'; // Visa login form.
-      utbildningar.style.display = 'none'; // Dölja utbildningar section.
-    });
-
-    // Kontrollera om user redan är inloggad.
-    document.addEventListener('DOMContentLoaded', function () {
-      if (localStorage.getItem('loggedIn') === 'true') {
-        showWelcomeMessage();
-      }
-    });
-
-    // Hantera inloggn.
-    document.getElementById('login-btn').addEventListener('click', function () {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-
-      // Kontrolera om de upggifter är stämmer överens med de hårdkodade valuses.
-      if (username === correctUsername && password === correctPassword) {
-        localStorage.setItem('loggedIn', 'true');
-        showWelcomeMessage();
-      } else {
-        // Display error message att upggifter är felaktiga.
-        errorMsg.textContent = "Felaktigt namn eller lösenord!";
-        errorMsg.style.color = "red";
-      }
-    });
-
-    // Function för att visa "Välkommen sida" samt döija login form och utbildningar section.
-    function showWelcomeMessage() {
-      // Välkommen sida som har skapat via "innerHTML".
-      loginForm.innerHTML = `
-        <h1>Välkommen till Canvas</h1>
-        <br>
-        <h2> Du är inloggad</h2>
-        <br>
-        <button id="logout-btn">Logga ut</button>`;
-      utbildningar.style.display = 'none';
-
-      // Hantera logout.
-      document.getElementById('logout-btn').addEventListener('click', function () {
-        localStorage.removeItem('loggedIn'); // Rensa login status.
-        showLoginForm(); // Visa login form igen.
-        loginForm.style.display = 'block'; //Döija login form igen då visas start sida igen.
-        //Dölja inloggningsform efter 3 sekunder.
-          setTimeout(function() {
-          loginForm.style.display = 'none'; 
-        }, 3000);
-      });
-    }
-
-    // Function för att visa login form igen efter logout.
-    function showLoginForm() {
-      loginForm.innerHTML = `
-        <h2 .s>Login</h2>
-        <input type="text" id="username" placeholder="Namn">
-        <input type="password" id="password" placeholder="Lösenord">
-        <button id="login-btn">Logga in</button>
-        <p id="error-msg"></p>
-    `;
-      utbildningar.style.display = 'block';
-      errorMsg.textContent = '';
-
-      // Återanslut login form efter skapde händelse. "event handler".
-      document.getElementById('login-btn').addEventListener('click', function () {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        if (username === correctUsername && password === correctPassword) {
-          localStorage.setItem('loggedIn', 'true');
-          showWelcomeMessage();
-        } else {
-          errorMsg.textContent = "Felaktigt namn eller lösenord!";
-          errorMsg.style.color = "red";
-        }
-      });
-    }
-  </script>
+  <!-- Start Script (Link external JavaScript file) -->
+  <script src="script.js"></script>
   <!-- End Script -->
 </body>
+
 </html>
